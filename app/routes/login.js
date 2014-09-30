@@ -1,11 +1,15 @@
 import Ember from 'ember';
-import AuthenticatedMixin from '../mixins/authenticated-route';
 
 export default Ember.Route.extend({
 
   actions: {
     loginAsGuest: function () {
-      
+      this.controllerFor('session').setProperties({
+        isAuthenticated: true,
+        authenticationType: 'guest'
+      });
+
+      this.transitionTo('decks');
     }
   }
 });
