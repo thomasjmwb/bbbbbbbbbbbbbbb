@@ -14,13 +14,12 @@
   </head>
   <body>
     <script>
-      window.WebatriceENV = {{ENV}};
-      window.EmberENV = window.WebatriceENV.EmberENV;
+      window.EmberENV = {{EMBER_ENV}};
     </script>
     <script src="assets/vendor.js"></script>
     <script src="assets/webatrice.js"></script>
     <script>
-      window.Webatrice = require('webatrice/app')['default'].create(WebatriceENV.APP);
+      window.Webatrice = require('webatrice/app')['default'].create({{APP_CONFIG}});
     </script>
   </body>
 </html>
