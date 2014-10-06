@@ -1,1 +1,26 @@
-{{controllers.sets.length}}
+<div class="row">
+  <div class="col-sm-5">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Set</td>
+          <td>Mana Cost</td>
+          <td>Card Type</td>
+          <td>P/T</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each card in controllers.cards}}
+          <tr>
+            <td>{{card.name}}</td>
+            <td>{{card.printings}}</td>
+            <td>{{card.manaCost}}</td>
+            <td>{{card.type}}</td>
+            <td>{{card.power}}/{{card.toughness}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
