@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  isAuthenticated: false,
+  isAuthenticated: true,
 
   //can be guest or user
-  authenticationType: null
+  authenticationType: 'guest'
 });
