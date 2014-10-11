@@ -10,7 +10,6 @@ Router.map(function() {
   this.resource('users', function () {
     this.resource('user', {path: '/:id'}, function () {
       this.resource('decks', function () {
-        this.route('list');
         this.resource('deck', {path: '/:id'});
       });
     });

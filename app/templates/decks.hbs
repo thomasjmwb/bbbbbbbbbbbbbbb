@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         {{#each card in controllers.cards.displayCards}}
-          <tr>
+          <tr {{action "showCard" card}}>
             <td class="col-sm-2">{{card.name}}</td>
             <td class="col-sm-3">{{card.recentSet}}</td>
             <td class="col-sm-3">{{card.manaCost}}</td>
@@ -22,5 +22,11 @@
         {{/each}}
       </tbody>
     </table>
+  </div>
+  <div class="col-sm-3">
+    {{outlet "card"}}    
+  </div>
+  <div class="col-sm-4">
+    {{outlet}}
   </div>
 </div>
