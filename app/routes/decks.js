@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Card from '../models/card';
 
 export default Ember.Route.extend({
   beforeModel: function () {
@@ -7,7 +8,7 @@ export default Ember.Route.extend({
       var cards = [],
           cardKeys = Ember.keys(data.cards[0]);
       cardKeys.forEach(function (card) {
-        cards.push(data.cards[0][card]);
+        cards.push(Card.create(data.cards[0][card]));
       });
       cardsController.set('model', cards);
     });

@@ -4,18 +4,18 @@
       <thead>
         <tr>
           <td class="col-sm-2">Name</td>
-          <td class="col-sm-4">Set</td>
-          <td class="col-sm-2">Mana Cost</td>
+          <td class="col-sm-3">Set (Most Recent)</td>
+          <td class="col-sm-3">Mana Cost</td>
           <td class="col-sm-2">Card Type</td>
           <td class="col-sm-2">P/T</td>
         </tr>
       </thead>
       <tbody>
-        {{#each card in controllers.cards}}
+        {{#each card in controllers.cards.displayCards}}
           <tr>
             <td class="col-sm-2">{{card.name}}</td>
-            <td class="col-sm-4">{{card.printings}}</td>
-            <td class="col-sm-2">{{card.manaCost}}</td>
+            <td class="col-sm-3">{{card.recentSet}}</td>
+            <td class="col-sm-3">{{card.manaCost}}</td>
             <td class="col-sm-2">{{card.type}}</td>
             <td class="col-sm-2">{{card.power}}/{{card.toughness}}</td>
           </tr>
