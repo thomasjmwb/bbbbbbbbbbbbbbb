@@ -3,21 +3,21 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <td>Name</td>
-          <td>Set</td>
-          <td>Mana Cost</td>
-          <td>Card Type</td>
-          <td>P/T</td>
+          <td class="col-sm-2">Name</td>
+          <td class="col-sm-4">Set</td>
+          <td class="col-sm-2">Mana Cost</td>
+          <td class="col-sm-2">Card Type</td>
+          <td class="col-sm-2">P/T</td>
         </tr>
       </thead>
       <tbody>
         {{#each card in controllers.cards}}
           <tr>
-            <td>{{card.name}}</td>
-            <td>{{card.printings}}</td>
-            <td>{{card.manaCost}}</td>
-            <td>{{card.type}}</td>
-            <td>{{card.power}}/{{card.toughness}}</td>
+            <td class="col-sm-2">{{card.name}}</td>
+            <td class="col-sm-4">{{card.printings}}</td>
+            <td class="col-sm-2">{{card.manaCost}}</td>
+            <td class="col-sm-2">{{card.type}}</td>
+            <td class="col-sm-2">{{card.power}}/{{card.toughness}}</td>
           </tr>
         {{/each}}
       </tbody>
