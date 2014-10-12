@@ -14,10 +14,6 @@ export default Ember.Route.extend({
     });
   },
 
-  model: function () {
-
-  },
-
   actions: {
     showCard: function (card) {
       this.render('card', {

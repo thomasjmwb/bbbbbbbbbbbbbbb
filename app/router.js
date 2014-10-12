@@ -8,9 +8,9 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.resource('users', function () {
-    this.resource('user', {path: '/:id'}, function () {
+    this.resource('user', {path: '/:user_id'}, function () {
       this.resource('decks', function () {
-        this.resource('deck', {path: '/:id'});
+        this.resource('deck', {path: '/:deck_id'});
       });
     });
   });  
