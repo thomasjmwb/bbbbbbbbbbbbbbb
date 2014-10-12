@@ -5,7 +5,13 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li>{{#link-to 'user' controllers.user.id}}Hi {{controllers.user.name}}{{/link-to}}</li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Hi {{controllers.user.name}}{{fa-icon "caret-down"}}</span></a>
+          <ul class="dropdown-menu">
+            <li>{{#link-to 'user' controllers.user.id}}Profile{{/link-to}}</li>
+            <li>{{#link-to 'decks.list' controllers.user.id}}Decks{{/link-to}}</li>
+          </ul>          
+        </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
