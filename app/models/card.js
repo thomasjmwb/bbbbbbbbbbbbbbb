@@ -9,5 +9,12 @@ export default Ember.Object.extend({
 
   imageUrl: function () {
     return 'http://mtgimage.com/card/' + this.get('name') + '.jpg';
-  }.property('name')
+  }.property('name'),
+
+  manaCostFormatted: function () {
+    if (!this.get('manaCost')) {
+      return '';
+    }
+    return this.get('manaCost').split('{').join('').split('}').join('');
+  }.property('manaCost')
 });
