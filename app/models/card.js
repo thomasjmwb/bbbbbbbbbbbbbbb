@@ -5,5 +5,9 @@ export default Ember.Object.extend({
     var printings = this.get('printings');
 
     return printings[printings.length -1];    
-  }.property('printings')
+  }.property('printings'),
+
+  imageUrl: function () {
+    return 'http://mtgimage.com/card/' + this.get('name') + '.jpg';
+  }.property('name')
 });

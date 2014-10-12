@@ -1,1 +1,30 @@
-{{name}}
+<img {{bind-attr src=imageUrl}} class="img-responsive">
+<div class="row">
+  <div class="col-sm-6">
+    <span>Name</span>
+  </div>
+  <div class="col-sm-6">
+    <span>{{name}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <span>Mana cost</span>
+  </div>
+  <div class="col-sm-6">
+    <span>{{manaCost}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <span>Card type</span>
+  </div>
+  <div class="col-sm-6">
+    <span>{{type}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <p>{{text}}</p>
+  </div>  
+</div>
