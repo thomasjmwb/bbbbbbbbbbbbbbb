@@ -16,5 +16,16 @@ export default Ember.Object.extend({
       return '';
     }
     return this.get('manaCost').split('{').join('').split('}').join('');
-  }.property('manaCost')
+  }.property('manaCost'),
+
+  powerToughnessFormatted: function () {
+    var power = this.get('power'),
+        toughness = this.get('toughness');
+
+    if (!power && !toughness) {
+      return '';
+    } else {
+      return power + '/' + toughness;
+    }
+  }.property('power', 'toughness')
 });
