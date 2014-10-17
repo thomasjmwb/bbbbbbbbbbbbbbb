@@ -41,7 +41,8 @@ export default Ember.Object.extend({
       } else {
         prev.push({
           name: curr.name,
-          count: 1
+          count: 1,
+          card: curr
         });
       }
 

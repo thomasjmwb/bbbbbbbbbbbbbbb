@@ -48,10 +48,10 @@
               <td><strong>Instants</strong></td>
             {{/x-tr}}
             {{#if mainDeckInstantsExpanded}}
-              {{#each card in mainDeckInstants}}
-                {{#x-tr action="showCard" param=card}}
-                  <td><span class="indent indent-2">{{card.count}}</span></td>
-                  <td>{{card.name}}</td>
+              {{#each cardObj in mainDeckInstants}}
+                {{#x-tr action="showCard" param=cardObj.card}}
+                  <td><span class="indent indent-2">{{cardObj.count}}</span></td>
+                  <td class="cursor-pointer">{{cardObj.name}}</td>
                 {{/x-tr}}
               {{/each}}
             {{/if}}
