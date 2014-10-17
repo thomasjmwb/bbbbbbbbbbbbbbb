@@ -23,6 +23,7 @@
         </tr>
       </thead>
       <tbody>
+        {{!-- Main Deck --}}
         {{#x-tr class="info" action="toggle" param="mainDeckExpanded"}}
           <td>
             {{cards.length}}
@@ -35,6 +36,8 @@
           <td><strong>Maindeck</strong></td>
         {{/x-tr}}
         {{#if mainDeckExpanded}}
+
+          {{!-- Instants --}}
           {{#if numMainDeckInstants}}
             {{#x-tr class="success" action="toggle" param="mainDeckInstantsExpanded"}}
               <td>
@@ -56,6 +59,16 @@
               {{/each}}
             {{/if}}
           {{/if}}
+
+          {{!-- Creatures --}}
+
+          {{!-- Artifacts --}}
+
+          {{!-- Sorceries --}}
+
+          {{!-- Enchantments --}}
+
+          {{!-- Lands --}}
         {{/if}}
       </tbody>
     </table>
