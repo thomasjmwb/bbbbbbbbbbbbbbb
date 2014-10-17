@@ -15,7 +15,7 @@
 
 {{#if cards.length}}
   <div class="table-responsive">
-    <table class="table">
+    <table class="table table-condensed">
       <thead>
         <tr>
           <th class="col-sm-3">Number</th>
@@ -23,14 +23,28 @@
         </tr>
       </thead>
       <tbody>
-        {{#x-tr action="toggle" param="mainDeckExpanded"}}
-          <td>{{cards.length}}</td>
+        {{#x-tr class="info" action="toggle" param="mainDeckExpanded"}}
+          <td>
+            {{cards.length}}
+            {{#if mainDeckExpanded}}
+              {{fa-icon "caret-down"}}
+            {{else}}
+              {{fa-icon "caret-up"}}
+            {{/if}}
+          </td>
           <td><strong>Maindeck</strong></td>
         {{/x-tr}}
         {{#if mainDeckExpanded}}
           {{#if numMainDeckInstants}}
-            {{#x-tr action="toggle" param="mainDeckInstantsExpanded"}}
-              <td><span class="indent indent-1">{{numMainDeckInstants}}</span></td>
+            {{#x-tr class="success" action="toggle" param="mainDeckInstantsExpanded"}}
+              <td>
+                <span class="indent indent-1">{{numMainDeckInstants}}</span>
+                {{#if mainDeckInstantsExpanded}}
+                  {{fa-icon "caret-down"}}
+                {{else}}
+                  {{fa-icon "caret-up"}}
+                {{/if}}
+              </td>
               <td><strong>Instants</strong></td>
             {{/x-tr}}
             {{#if mainDeckInstantsExpanded}}
