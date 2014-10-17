@@ -12,3 +12,38 @@
     </div>
   </div>
 </form>
+
+{{#if cards.length}}
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-sm-3">Number</th>
+          <th class="col-sm-9">Card</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#x-tr action="toggle" param="mainDeckExpanded"}}
+          <td>{{cards.length}}</td>
+          <td><strong>Maindeck</strong></td>
+        {{/x-tr}}
+        {{#if mainDeckExpanded}}
+          {{#if numMainDeckInstants}}
+            {{#x-tr action="toggle" param="mainDeckInstantsExpanded"}}
+              <td><span class="indent indent-1">{{numMainDeckInstants}}</span></td>
+              <td><strong>Instants</strong></td>
+            {{/x-tr}}
+            {{#if mainDeckInstantsExpanded}}
+              {{#each card in mainDeckInstants}}
+                {{#x-tr action="showCard" param=card}}
+                  <td><span class="indent indent-2">{{card.count}}</span></td>
+                  <td>{{card.name}}</td>
+                {{/x-tr}}
+              {{/each}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+{{/if}}

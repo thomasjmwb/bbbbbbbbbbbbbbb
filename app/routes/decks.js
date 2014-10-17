@@ -20,7 +20,7 @@ export default Ember.Route.extend({
         into: 'decks',
         outlet: 'card',
         model: card,
-        controller: card
+        controller: 'card'
       });
     }
   }
