@@ -11,7 +11,9 @@ Router.map(function() {
     this.resource('user', {path: '/:user_id'}, function () {
       this.resource('decks', function () {
         this.route('list');
-        this.resource('deck', {path: '/:deck_id'});
+        this.resource('deck', {path: '/:deck_id'}, function () {
+          this.route('build');
+        });
       });
     });
   });  

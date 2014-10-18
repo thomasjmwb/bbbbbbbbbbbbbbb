@@ -12,7 +12,7 @@
     <span>Mana cost</span>
   </div>
   <div class="col-sm-6">
-    <span>{{manaCost}}</span>
+    <span>{{manaCostFormatted}}</span>
   </div>
 </div>
 <div class="row">
@@ -23,8 +23,22 @@
     <span>{{type}}</span>
   </div>
 </div>
+{{#if powerToughnessFormatted}}
+  <div class="row">
+    <div class="col-sm-6">
+      <span>P/T</span>
+    </div>
+    <div class="col-sm-6">
+      <span>{{powerToughnessFormatted}}</span>
+    </div>
+  </div>
+{{/if}}
 <div class="row">
   <div class="col-sm-12">
     <p>{{text}}</p>
   </div>  
+</div>
+
+<div class="row">
+  <button {{action "addToMain" this}} class="btn btn-primary">Add to Main Deck</button>
 </div>

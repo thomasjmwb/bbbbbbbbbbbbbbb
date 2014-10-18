@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   redirect: function () {
-    this.transitionTo('deck', 'guest', 'new');
+    this.transitionTo('deck.build', 'guest', 'new');
   }
 });
