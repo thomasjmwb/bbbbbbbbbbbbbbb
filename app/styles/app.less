@@ -20,3 +20,12 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.table-ellipsible {
+  table-layout: fixed;
+  td, th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
