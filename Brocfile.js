@@ -18,5 +18,6 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+app.import('bower_components/underscore/underscore.js');
 
 module.exports = app.toTree();

@@ -1,12 +1,16 @@
 <div {{bind-attr class=":row :row-offcanvas :row-offcanvas-left filtersActive:active"}}>
   <div class="col-sm-3 col-lg-1 sidebar-offcanvas" id="sidebar">
-    <strong>Card types</strong>
-    <div class="checkbox">
-      <label>
-        {{input type="checkbox"}}
-        Sorcery
-      </label>
-    </div>
+    {{#each filterProperties}}
+    <strong>{{label}}</strong>
+      {{#each entries}}
+          <div class="checkbox">
+              <label>
+                {{input type="checkbox" isChecked=isChecked name=name}}
+                  {{label}}
+              </label>
+          </div>
+      {{/each}}
+    {{/each}}
   </div>
   <div class="col-sm-12 col-lg-11">
     <div class="col-sm-5">
