@@ -86,7 +86,7 @@
                     {{#each cardObj in mainDeckInstants}}
                       {{#x-tr action="showCard" param=cardObj.card}}
                         <td><span class="indent indent-2">{{cardObj.count}}</span></td>
-                        <td class="cursor-pointer">{{cardObj.name}}</td>
+                        <td class="cursor-pointer">{{cardObj.card.name}}</td>
                       {{/x-tr}}
                     {{/each}}
                   {{/if}}
