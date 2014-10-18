@@ -15,6 +15,14 @@ function groupByName (prev, curr) {
   return prev;
 }
 
+var CardObj = Ember.Object.extend({
+  numberOf: function () {
+    return this.get('cardObjs').reduce(function (prev, curr) {
+      return prev + curr.count;
+    }, 0);
+  }.property('cardObjs')
+});
+
 export default Ember.Object.extend({
   /** @property {String} - the deck name */
   name: null,
@@ -28,45 +36,22 @@ export default Ember.Object.extend({
   /** @property {Array[Card]} - an array of Cards that make up the sideboard */
   sideboard: [],
 
-  /** @property {Number} - number of instants in the main deck */
-  numMainDeckInstants: function () {
-    var mainDeckInstants = this.get('mainDeckInstants') || [];
-
-    return mainDeckInstants.reduce(function (prev, curr) {
-      return prev + curr.count;
-    }, 0);
-  }.property('mainDeckInstants.@each'),
-
-  /** @property {Array[CardObj]} - an array of CardObjs consisting of:
-    * count - the number of cards of that name
-    * card - the actual Card
-    */
-  mainDeckInstants: function () {
-    var instants = this.get('cards').filter(function (card) {
-      return card.types[0].toLowerCase() === 'instant';
-    });
-
-    return instants.reduce(groupByName, []);
+  /** @property {Array[String]} - an array of all the different main card types in the deck */
+  cardTypes: function () {
+    return this.get('cards').mapBy('mainType').uniq();
   }.property('cards.@each'),
 
-  /** @property {Number} - number of creatures in the main deck */
-  numMainDeckCreatures: function () {
-    var mainDeckCreatures = this.get('mainDeckCreatures') || [];
+  /** @property {Array[CardObj]} - an array of CardObj that populates the deck table */
+  mainDeckGroupings: function () {
+    var cards = this.get('cards'),
+        cardTypes = this.get('cardTypes'),
+        cardGroups = cardTypes.map(function (cT) {
+          return CardObj.create({
+            type: cT,
+            cardObjs: cards.filterBy('mainType', cT).reduce(groupByName, [])
+          });
+        });
 
-    return mainDeckCreatures.reduce(function (prev, curr) {
-      return prev + curr.count;
-    }, 0);
-  }.property('mainDeckCreatures.@each'),
-
-  /** @property {Array[CardObj]} - an array of CardObjs consisting of:
-    * count - the number of cards of that name
-    * card - the actual Card
-    */
-  mainDeckCreatures: function () {
-    var creatures = this.get('cards').filter(function (card) {
-      return card.types[0].toLowerCase() === 'creature';
-    });
-
-    return creatures.reduce(groupByName, []);
-  }.property('cards.@each'),
+    return cardGroups;
+  }.property('cards.@each')
 });

@@ -22,10 +22,10 @@ export default Ember.Object.extend({
     var power = this.get('power'),
         toughness = this.get('toughness');
 
-    if (!power && !toughness) {
-      return '';
-    } else {
-      return power + '/' + toughness;
-    }
-  }.property('power', 'toughness')
+    return !power && !toughness ? '' : power + '/' + toughness;
+  }.property('power', 'toughness'),
+
+  mainType: function () {
+    return this.get('types')[0];
+  }.property('types')
 });

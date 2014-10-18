@@ -73,51 +73,24 @@
               {{/x-tr}}
               {{#if mainDeckExpanded}}
 
-                {{!-- Instants --}}
-                {{#if numMainDeckInstants}}
-                  {{#x-tr class="success" action="toggle" param="mainDeckInstantsExpanded"}}
+                {{#each group in mainDeckGroupings}}
+                  {{#x-tr class="success"}}
                     <td>
-                      <span class="indent indent-1">{{numMainDeckInstants}}</span>
-                      <i {{bind-attr class=":indent :indent-1 :fa mainDeckInstantsExpanded:fa-caret-down:fa-caret-up"}}></i>
+                      <span class="indent indent-1">{{group.numberOf}}</span>
+                      <i class="fa fa-caret-down indent indent-1"></i>
                     </td>
-                    <td><strong>Instants</strong></td>
+                    <td><strong>{{pluralize group.type}}</strong></td>
                   {{/x-tr}}
-                  {{#if mainDeckInstantsExpanded}}
-                    {{#each cardObj in mainDeckInstants}}
-                      {{#x-tr action="showCard" param=cardObj.card}}
-                        <td><span class="indent indent-2">{{cardObj.count}}</span></td>
-                        <td class="cursor-pointer">{{cardObj.card.name}}</td>
-                      {{/x-tr}}
-                    {{/each}}
-                  {{/if}}
-                {{/if}}
+                  {{#each cardObj in group.cardObjs}}
+                    {{#x-tr action="showCard" param=cardObj.card}}
+                      <td>
+                        <span class="indent indent-2">{{cardObj.count}}</span>
+                      </td>
+                      <td>{{cardObj.card.name}}</td>
+                    {{/x-tr}}
+                  {{/each}}
+                {{/each}}
 
-                {{!-- Creatures --}}
-                {{#if numMainDeckCreatures}}
-                  {{#x-tr class="success" action="toggle" param="mainDeckCreaturesExpanded"}}
-                    <td>
-                      <span class="indent indent-1">{{numMainDeckCreatures}}</span>
-                      <i {{bind-attr class=":indent :indent-1 :fa mainDeckCreaturesExpanded:fa-caret-down:fa-caret-up"}}></i>
-                    </td>
-                    <td><strong>Creatures</strong></td>
-                  {{/x-tr}}
-                  {{#if mainDeckCreaturesExpanded}}
-                    {{#each cardObj in mainDeckCreatures}}
-                      {{#x-tr action="showCard" param=cardObj.card}}
-                        <td><span class="indent indent-2">{{cardObj.count}}</span></td>
-                        <td class="cursor-pointer">{{cardObj.card.name}}</td>
-                      {{/x-tr}}
-                    {{/each}}
-                  {{/if}}
-                {{/if}}
-
-                {{!-- Artifacts --}}
-
-                {{!-- Sorceries --}}
-
-                {{!-- Enchantments --}}
-
-                {{!-- Lands --}}
               {{/if}}
             </tbody>
           </table>
