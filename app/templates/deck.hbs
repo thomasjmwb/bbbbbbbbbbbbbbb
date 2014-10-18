@@ -26,12 +26,8 @@
         {{!-- Main Deck --}}
         {{#x-tr class="info" action="toggle" param="mainDeckExpanded"}}
           <td>
-            {{cards.length}}
-            {{#if mainDeckExpanded}}
-              {{fa-icon "caret-down"}}
-            {{else}}
-              {{fa-icon "caret-up"}}
-            {{/if}}
+            <span>{{cards.length}}</span>
+            <i {{bind-attr class=":fa mainDeckExpanded:fa-caret-down:fa-caret-up"}}></i>
           </td>
           <td><strong>Maindeck</strong></td>
         {{/x-tr}}
@@ -42,11 +38,7 @@
             {{#x-tr class="success" action="toggle" param="mainDeckInstantsExpanded"}}
               <td>
                 <span class="indent indent-1">{{numMainDeckInstants}}</span>
-                {{#if mainDeckInstantsExpanded}}
-                  {{fa-icon "caret-down"}}
-                {{else}}
-                  {{fa-icon "caret-up"}}
-                {{/if}}
+                <i {{bind-attr class=":indent :indent-1 :fa mainDeckInstantsExpanded:fa-caret-down:fa-caret-up"}}></i>
               </td>
               <td><strong>Instants</strong></td>
             {{/x-tr}}

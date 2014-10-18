@@ -1,16 +1,5 @@
 import Ember from 'ember';
 
-function getCardObj (cards, card) {
-  var cardObj = false;
-
-  cards.forEach(function (c) {
-    if (c.name === card.name) {
-      cardObj = c;
-    }
-  });
-
-  return cardObj;
-}
 export default Ember.Object.extend({
   name: null,
 
@@ -34,7 +23,7 @@ export default Ember.Object.extend({
     });
 
     return instants.reduce(function (prev, curr) {
-      var cardObj = getCardObj(prev, curr);
+      var cardObj = prev.findBy('name', curr.name);
 
       if (cardObj) {
         cardObj.count++;
