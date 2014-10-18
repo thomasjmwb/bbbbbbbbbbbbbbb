@@ -47,5 +47,26 @@ export default Ember.Object.extend({
     });
 
     return instants.reduce(groupByName, []);
-  }.property('cards.@each')
+  }.property('cards.@each'),
+
+  /** @property {Number} - number of creatures in the main deck */
+  numMainDeckCreatures: function () {
+    var mainDeckCreatures = this.get('mainDeckCreatures') || [];
+
+    return mainDeckCreatures.reduce(function (prev, curr) {
+      return prev + curr.count;
+    }, 0);
+  }.property('mainDeckCreatures.@each'),
+
+  /** @property {Array[CardObj]} - an array of CardObjs consisting of:
+    * count - the number of cards of that name
+    * card - the actual Card
+    */
+  mainDeckCreatures: function () {
+    var creatures = this.get('cards').filter(function (card) {
+      return card.types[0].toLowerCase() === 'creature';
+    });
+
+    return creatures.reduce(groupByName, []);
+  }.property('cards.@each'),
 });

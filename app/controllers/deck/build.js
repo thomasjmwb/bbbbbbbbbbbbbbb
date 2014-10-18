@@ -7,6 +7,7 @@ export default Ember.ObjectController.extend({
 
   mainDeckExpanded: true,
   mainDeckInstantsExpanded: true,
+  mainDeckCreaturesExpanded: true,
 
   actions: {
     toggle: function (propertyName) {
