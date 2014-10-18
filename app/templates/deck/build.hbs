@@ -24,11 +24,11 @@
         <tbody>
           {{#each card in controllers.cards.displayCards}}
             <tr class="cursor-pointer" {{action "showCard" card}}>
-              <td class="col-sm-3">{{card.name}}</td>
-              <td class="col-sm-3">{{card.recentSet}}</td>
-              <td class="col-sm-2">{{card.manaCostFormatted}}</td>
-              <td class="col-sm-3">{{card.type}}</td>
-              <td class="col-sm-1">{{card.powerToughnessFormatted}}</td>
+              <td class="col-sm-3" {{bind-attr title=card.name}}>{{card.name}}</td>
+              <td class="col-sm-3" {{bind-attr title=card.recentSet}}>{{card.recentSet}}</td>
+              <td class="col-sm-2" {{bind-attr title=card.manaCostFormatted}}>{{card.manaCostFormatted}}</td>
+              <td class="col-sm-3" {{bind-attr title=card.type}}>{{card.type}}</td>
+              <td class="col-sm-1" {{bind-attr title=card.powerToughnessFormatted}}>{{card.powerToughnessFormatted}}</td>
             </tr>
           {{/each}}
         </tbody>
