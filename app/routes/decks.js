@@ -17,7 +17,7 @@ export default Ember.Route.extend({
   actions: {
     showCard: function (card) {
       this.render('card', {
-        into: 'decks',
+        into: 'deck.build',
         outlet: 'card',
         model: card,
         controller: 'card'
