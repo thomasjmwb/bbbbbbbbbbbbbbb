@@ -23,7 +23,7 @@
         </thead>
         <tbody>
           {{#each card in controllers.cards.displayCards}}
-            <tr {{action "showCard" card}}>
+            <tr class="cursor-pointer" {{action "showCard" card}}>
               <td class="col-sm-3">{{card.name}}</td>
               <td class="col-sm-3">{{card.recentSet}}</td>
               <td class="col-sm-1">{{card.manaCostFormatted}}</td>
@@ -64,31 +64,33 @@
             </thead>
             <tbody>
               {{!-- Main Deck --}}
-              {{#x-tr class="info" action="toggle" param="mainDeckExpanded"}}
+              {{#x-tr class="info cursor-pointer" action="showHide" param="mainDeck"}}
                 <td>
                   <span>{{cards.length}}</span>
-                  <i {{bind-attr class=":fa mainDeckExpanded:fa-caret-down:fa-caret-up"}}></i>
+                  <i {{bind-attr class=":fa canShowMainDeck:fa-caret-down:fa-caret-up"}}></i>
                 </td>
                 <td><strong>Maindeck</strong></td>
               {{/x-tr}}
-              {{#if mainDeckExpanded}}
+              {{#if canShowMainDeck}}
 
-                {{#each group in mainDeckGroupings}}
-                  {{#x-tr class="success"}}
+                {{#each group in mainDeckGroupings itemController="deckTableItem"}}
+                  {{#x-tr class="success cursor-pointer" action="showHide" param=group.superType}}
                     <td>
                       <span class="indent indent-1">{{group.numberOf}}</span>
-                      <i class="fa fa-caret-down indent indent-1"></i>
+                      <i {{bind-attr class=":fa group.canShow:fa-caret-down:fa-caret-up :indent :indent-1"}}></i>
                     </td>
                     <td><strong>{{pluralize group.type}}</strong></td>
                   {{/x-tr}}
-                  {{#each cardObj in group.cardObjs}}
-                    {{#x-tr action="showCard" param=cardObj.card}}
-                      <td>
-                        <span class="indent indent-2">{{cardObj.count}}</span>
-                      </td>
-                      <td class="cursor-pointer">{{cardObj.card.name}}</td>
-                    {{/x-tr}}
-                  {{/each}}
+                  {{#if group.canShow}}
+                    {{#each cardObj in group.cardObjs}}
+                      {{#x-tr action="showCard" param=cardObj.card}}
+                        <td>
+                          <span class="indent indent-2">{{cardObj.count}}</span>
+                        </td>
+                        <td class="cursor-pointer">{{cardObj.card.name}}</td>
+                      {{/x-tr}}
+                    {{/each}}
+                  {{/if}}
                 {{/each}}
 
               {{/if}}
