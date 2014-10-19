@@ -23,7 +23,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
   }.property('content', 'filterProperties.@each.values'),
 
   // only change to SortableMixin's arranged content is content binding -> filteredContent
-  arrangedContent: Ember.computed('filteredContent', 'sortProperties.@each', function(key, value) {
+  arrangedContent: Ember.computed('filteredContent', 'sortProperties.@each', function() {
     var content = get(this, 'filteredContent'),
       isSorted = get(this, 'isSorted'),
       sortProperties = get(this, 'sortProperties'),
@@ -33,8 +33,8 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       content.sort(function(item1, item2) {
         return self.orderBy(item1, item2);
       });
-      _.forEach(content, function(item) {
-        _.forEach(sortProperties, function(sortProperty) {
+      content.forEach(function(item) {
+        sortProperties.forEach(function(sortProperty) {
           Ember.addObserver(item, sortProperty, this, 'contentItemSortPropertyDidChange');
         }, this);
       }, this);
@@ -49,7 +49,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       ret = content.slice(),
       self = this;
     // filter for each filterObject, in order
-    _.forEach(filterProperties, function(filterProp){
+    filterProperties.forEach(function(filterProp){
       ret = self.filterFunction(filterProp, ret);
     });
     return ret;
@@ -65,7 +65,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       var itemValue = Ember.get(item, propertyName),
         passFilter = false;// set to true so items pass if no filter values are active, otherwise set to false so things have to pass filtering
       // filter for values.@each
-      _.forEach(values, function(value){
+      values.forEach(function(value){
         if(!and && passFilter){
           return passFilter;
         }

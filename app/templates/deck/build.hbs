@@ -40,6 +40,20 @@
     <div class="col-sm-5">
       <form class="form-horizontal">
         <div class="form-group">
+          <label class="col-sm-2"></label>
+          <div class="col-sm-10">
+            <div class="btn-group">
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                {{fa-icon "cog"}}
+                {{fa-icon "caret-down"}}
+              </button>
+              <ul class="dropdown-menu">
+                <li><a {{action "exportDeck" this.model}}>Export Deck</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="deck-name" class="col-sm-2 control-label">Deck name</label>
           <div class="col-sm-10">
             <input class="form-control" id="deck-name"></input>
