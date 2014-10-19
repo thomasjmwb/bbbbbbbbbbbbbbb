@@ -11,6 +11,14 @@ export default Ember.ObjectController.extend({
     return !this.get('doNotShowTypes').contains('mainDeck');
   }.property('doNotShowTypes.@each'),
 
+  canShowSideDeck: function () {
+    return !this.get('doNotShowTypes').contains('sideDeck');
+  }.property('doNotShowTypes.@each'),
+
+  canShowDeckTable: function () {
+    return this.get('cards.length') || this.get('sideboard.length');
+  }.property('cards.@each', 'sideboard.@each'),
+
   actions: {
     toggle: function (propertyName) {
       this.toggleProperty(propertyName);

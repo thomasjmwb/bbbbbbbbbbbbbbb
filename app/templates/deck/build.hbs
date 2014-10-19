@@ -53,7 +53,7 @@
         </div>
       </form>
 
-      {{#if cards.length}}
+      {{#if canShowDeckTable}}
         <div class="table-responsive">
           <table class="table table-condensed">
             <thead>
@@ -93,6 +93,42 @@
                   {{/if}}
                 {{/each}}
 
+              {{/if}}
+
+              {{!-- Sideboard --}}
+              {{#if sideboard.length}}
+                <tr></tr>
+                {{#x-tr class="info cursor-pointer" action="showHide" param="sideDeck"}}
+                  <td>
+                    <span>{{sideboard.length}}</span>
+                    <i {{bind-attr class=":fa canShowSideDeck:fa-caret-down:fa-caret-up"}}></i>
+                  </td>
+                  <td><strong>Sideboard</strong></td>
+                {{/x-tr}}
+
+                {{#if canShowMainDeck}}
+
+                  {{#each group in sideDeckGroupings itemController="deckTableItem"}}
+                    {{#x-tr class="success cursor-pointer" action="showHide" param=group.superType}}
+                      <td>
+                        <span class="indent indent-1">{{group.numberOf}}</span>
+                        <i {{bind-attr class=":fa group.canShow:fa-caret-down:fa-caret-up :indent :indent-1"}}></i>
+                      </td>
+                      <td><strong>{{pluralize group.type}}</strong></td>
+                    {{/x-tr}}
+                    {{#if group.canShow}}
+                      {{#each cardObj in group.cardObjs}}
+                        {{#x-tr action="showCard" param=cardObj.card}}
+                          <td>
+                            <span class="indent indent-2">{{cardObj.count}}</span>
+                          </td>
+                          <td class="cursor-pointer">{{cardObj.card.name}}</td>
+                        {{/x-tr}}
+                      {{/each}}
+                    {{/if}}
+                  {{/each}}
+
+                {{/if}}
               {{/if}}
             </tbody>
           </table>
