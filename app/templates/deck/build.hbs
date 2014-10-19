@@ -1,13 +1,3 @@
-{{#bs-modal name="deckExport" fade=true title="Deck Export"}}
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label class="col-sm-3">Deck contents</label>
-      <div class="col-sm-9">
-        {{textarea value=exportFormat rows=numberOfUniqueCardsInDeck}}
-      </div>
-    </div>
-  </form>
-{{/bs-modal}}
 <div {{bind-attr class=":row :row-offcanvas :row-offcanvas-left filtersActive:active"}}>
 
   <div class="col-sm-3 col-lg-1 sidebar-offcanvas" id="sidebar">
