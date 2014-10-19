@@ -26,6 +26,12 @@ export default Ember.Object.extend({
   }.property('power', 'toughness'),
 
   mainType: function () {
+    var types = this.get('types');
+    if(typeof(types)==="undefined"){
+      return '';
+    } else if(types.length===0){
+      return '';
+    }
     return this.get('types')[0];
   }.property('types')
 });

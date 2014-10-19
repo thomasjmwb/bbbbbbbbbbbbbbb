@@ -6,8 +6,10 @@ export default Ember.ArrayController.extend(filterableMixin, {
   filterProperties: [
     {
       label: 'Card Types',
-      propertyName: 'name',
+      propertyName: 'mainType',
       values: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
+      possibleValues: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
+      valuesDisplay: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
       entries: [
         Ember.Object.create({
           label: 'Creature',
@@ -57,6 +59,6 @@ export default Ember.ArrayController.extend(filterableMixin, {
 //    }
   ],
   displayCards: function () {
-    return this.get('model').slice(0, 100);
-  }.property('model')
+    return this.get('arrangedContent').slice(0, 100);
+  }.property('arrangedContent')
 });
