@@ -78,5 +78,29 @@ export default Ember.Object.extend({
         });
 
     return cardGroups;
-  }.property('sideboard.@each')
+  }.property('sideboard.@each'),
+
+  exportFormat: function () {
+    var mainDeckGroupings = this.get('mainDeckGroupings'),
+        sideDeckGroupings = this.get('sideDeckGroupings'),
+        exp = '';
+
+    mainDeckGroupings.forEach(function (group) {
+      group.cardObjs.forEach(function (cardObj) {
+        exp += cardObj.count + ' ' + cardObj.card.get('name') + '\n';
+      });      
+    });
+
+    sideDeckGroupings.forEach(function (group) {
+      group.cardObjs.forEach(function (cardObj) {
+        exp += 'SB: ' + cardObj.count + ' ' + cardObj.card.get('name') + '\n';
+      });
+    });
+
+    return exp;
+  }.property('mainDeckGroupings.@each', 'sideDeckGroupings.@each'),
+
+  numberOfUniqueCardsInDeck: function () {
+    return this.get('cards').uniq().length + this.get('sideboard').uniq().length;
+  }.property('cards.@each', 'sideboard.@each')
 });
