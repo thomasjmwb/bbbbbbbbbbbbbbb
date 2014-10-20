@@ -9,7 +9,7 @@
     {{/each}}
   </div>
   <div class="col-sm-12 col-lg-11">
-    <div class="col-sm-5">
+    {{#full-height class="col-sm-5 overflow-y-scroll"}}
       <button {{action "toggle" "filtersActive"}} class="btn btn-primary sm-display">Toggle Filters</button>
       <table class="table table-striped table-bordered table-condensed table-ellipsible">
         <thead>
@@ -148,6 +148,6 @@
           </table>
         </div>
       {{/if}}
-    </div>
+    {{/full-height}}
   </div>
 </div>
