@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import Card from '../models/card';
+import Deck from '../models/deck';
 
 export default Ember.Route.extend({
   beforeModel: function () {
@@ -25,6 +26,11 @@ export default Ember.Route.extend({
     },
 
     importDeck: function () {
+      var cards = this.controllerFor('cards').get('model'),
+          deck = Deck.createDeck(this.get('controller.importContents'), cards);
+
+      Bootstrap.ModalManager.hide('deckImport');
+      this.transitionTo('deck.build', deck);
     },
 
     showImportDeckModal: function () {

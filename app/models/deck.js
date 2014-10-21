@@ -27,7 +27,7 @@ var CardObj = Ember.Object.extend({
   }.property('isMain', 'type')
 });
 
-export default Ember.Object.extend({
+var Deck = Ember.Object.extend({
   /** @property {String} - the deck name */
   name: null,
 
@@ -104,3 +104,33 @@ export default Ember.Object.extend({
     return this.get('cards').uniq().length + this.get('sideboard').uniq().length;
   }.property('cards.@each', 'sideboard.@each')
 });
+
+Deck.reopenClass({
+  createDeck: function (deckContents, cards) {
+    var mainDeckCards = [],
+        sideboard = [],
+        deckCards = deckContents.split('\n');
+
+    deckCards.forEach(function (dC) {
+      var numberOfCards = dC.match(/\d+/)[0],
+          cardName = dC.substring(dC.indexOf(numberOfCards) + 1).trim();
+
+      if (dC.indexOf("SB:") > -1) { //we're inspecting a sideboard
+        for (var i = 0; i < numberOfCards; i++) {
+          sideboard.push(cards.findBy('name', cardName));
+        }
+      } else { //maindeck card
+        for (var i = 0; i < numberOfCards; i++) {
+          mainDeckCards.push(cards.findBy('name', cardName));
+        }
+      }
+    });
+
+    return Deck.create({
+      id: 'tmp',
+      cards: mainDeckCards,
+      sideboard: sideboard
+    });
+  }
+});
+export default Deck;
