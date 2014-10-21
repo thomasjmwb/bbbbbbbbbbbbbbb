@@ -54,11 +54,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
     });
     return ret;
   },
-  performTypeOfFilters: function (value, itemValue, passFilter, propertyName, and){
-    var self = this;
-    if(!and && passFilter){
-      return passFilter;
-    }
+  performTypeOfFilters: function (value, itemValue, propertyName, and){
     if(typeof(itemValue)==='undefined'){
       console.log('The typeof item['+propertyName+'] is undefined');
       return false;
@@ -85,7 +81,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       propertyName = Ember.get(filterProperty, 'propertyName'),
       values = Ember.getWithDefault(filterProperty, 'values', []),
       and = Ember.getWithDefault(filterProperty, 'and', true),
-      allOrAny = (and) ? Ember.all : Ember.any;
+      allOrAny = (and) ? [].every : [].any;
     // and will be used to determine if an item needs to pass all filter values, or pass just one filter value
 
     return content.filter(function(item){
@@ -93,17 +89,27 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       var itemValue = Ember.get(item, propertyName),
         passFilter = false;// set to true so items pass if no filter values are active, otherwise set to false so things have to pass filtering
       // filter for values.@each
-      values.forEach(function(value){
-        if(typeof(itemValue)==='object' && typeof(itemValue.push)==='function'){
-          passFilter = allOrAny(itemValue, function(itemValueItem){
-            self.performTypeOfFilters(value, itemValueItem, passFilter, propertyName,  and);
-          });
-        } else {
-          passFilter = allOrAny(itemValue, function(itemValueItem){
-            self.performTypeOfFilters(value, itemValueItem, passFilter, propertyName,  and);
-          });
-        }
-      });
+      if(and){
+        passFilter = values.every(function(value){
+          if(typeof(itemValue)==='object' && typeof(itemValue.push)==='function'){
+            return itemValue.all(function(itemValueItem){
+              return self.performTypeOfFilters(value, itemValueItem, propertyName,  and);
+            });
+          } else {
+            return self.performTypeOfFilters(value, itemValue, propertyName,  and);
+          }
+        });
+      } else {
+        passFilter = values.any(function(value){
+          if(typeof(itemValue)==='object' && typeof(itemValue.push)==='function'){
+            return itemValue.any(function(itemValueItem){
+              return self.performTypeOfFilters(value, itemValueItem, propertyName,  and);
+            });
+          } else {
+            return self.performTypeOfFilters(value, itemValue, propertyName,  and);
+          }
+        });
+      }
       return passFilter;
     });
   }
