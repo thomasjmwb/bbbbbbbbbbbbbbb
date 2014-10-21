@@ -1,0 +1,11 @@
+{{#bs-modal name="deckImport" footerButtonsBinding=importModalButtons fade=true title="Deck Import"}}
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-3">Deck contents</label>
+      <div class="col-sm-9">
+        {{textarea value=importContents rows="3"}}
+      </div>
+    </div>
+  </form>
+{{/bs-modal}}
+{{outlet}}

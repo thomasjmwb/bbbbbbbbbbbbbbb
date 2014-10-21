@@ -22,6 +22,13 @@ export default Ember.Route.extend({
         model: card,
         controller: 'card'
       });
+    },
+
+    importDeck: function () {
+    },
+
+    showImportDeckModal: function () {
+      return Bootstrap.ModalManager.show('deckImport');
     }
   }
 });

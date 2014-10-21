@@ -23,7 +23,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
   }.property('content', 'filterProperties.@each.values'),
 
   // only change to SortableMixin's arranged content is content binding -> filteredContent
-  arrangedContent: Ember.computed('filteredContent', 'sortProperties.@each', function(key, value) {
+  arrangedContent: Ember.computed('filteredContent', 'sortProperties.@each', function() {
     var content = get(this, 'filteredContent'),
       isSorted = get(this, 'isSorted'),
       sortProperties = get(this, 'sortProperties'),
@@ -33,8 +33,8 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       content.sort(function(item1, item2) {
         return self.orderBy(item1, item2);
       });
-      _.forEach(content, function(item) {
-        _.forEach(sortProperties, function(sortProperty) {
+      content.forEach(function(item) {
+        sortProperties.forEach(function(sortProperty) {
           Ember.addObserver(item, sortProperty, this, 'contentItemSortPropertyDidChange');
         }, this);
       }, this);
