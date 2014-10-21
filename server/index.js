@@ -3,7 +3,9 @@ module.exports = function(app) {
   var bodyParser = require('body-parser');
   var mocks      = globSync('./mocks/**/*.js', { cwd: __dirname }).map(require);
   var proxies    = globSync('./proxies/**/*.js', { cwd: __dirname }).map(require);
+  var compression = require('compression');
 
+  app.use(compression());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true

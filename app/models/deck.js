@@ -113,14 +113,15 @@ Deck.reopenClass({
 
     deckCards.forEach(function (dC) {
       var numberOfCards = dC.match(/\d+/)[0],
-          cardName = dC.substring(dC.indexOf(numberOfCards) + 1).trim();
+          cardName = dC.substring(dC.indexOf(numberOfCards) + 1).trim(),
+          i;
 
       if (dC.indexOf("SB:") > -1) { //we're inspecting a sideboard
-        for (var i = 0; i < numberOfCards; i++) {
+        for (i = 0; i < numberOfCards; i++) {
           sideboard.push(cards.findBy('name', cardName));
         }
       } else { //maindeck card
-        for (var i = 0; i < numberOfCards; i++) {
+        for (i = 0; i < numberOfCards; i++) {
           mainDeckCards.push(cards.findBy('name', cardName));
         }
       }
