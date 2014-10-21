@@ -54,7 +54,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
     });
     return ret;
   },
-  performTypeOfFilters: function (value, itemValue, propertyName, and){
+  performTypeOfFilters: function (value, itemValue, propertyName){
     if(typeof(itemValue)==='undefined'){
       console.log('The typeof item['+propertyName+'] is undefined');
       return false;
@@ -80,8 +80,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
     var self = this,
       propertyName = Ember.get(filterProperty, 'propertyName'),
       values = Ember.getWithDefault(filterProperty, 'values', []),
-      and = Ember.getWithDefault(filterProperty, 'and', true),
-      allOrAny = (and) ? [].every : [].any;
+      and = Ember.getWithDefault(filterProperty, 'and', true);
     // and will be used to determine if an item needs to pass all filter values, or pass just one filter value
 
     return content.filter(function(item){
@@ -93,10 +92,10 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
         passFilter = values.every(function(value){
           if(typeof(itemValue)==='object' && typeof(itemValue.push)==='function'){
             return itemValue.all(function(itemValueItem){
-              return self.performTypeOfFilters(value, itemValueItem, propertyName,  and);
+              return self.performTypeOfFilters(value, itemValueItem, propertyName);
             });
           } else {
-            return self.performTypeOfFilters(value, itemValue, propertyName,  and);
+            return self.performTypeOfFilters(value, itemValue, propertyName);
           }
         });
       } else {
