@@ -49,15 +49,43 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       ret = content.slice(),
       self = this;
     // filter for each filterObject, in order
-    _.forEach(filterProperties, function(filterProp){
+    filterProperties.forEach(function(filterProp){
       ret = self.filterFunction(filterProp, ret);
     });
     return ret;
   },
+  performTypeOfFilters: function (value, itemValue, passFilter, propertyName, and){
+    var self = this;
+    if(!and && passFilter){
+      return passFilter;
+    }
+    if(typeof(itemValue)==='undefined'){
+      console.log('The typeof item['+propertyName+'] is undefined');
+      return false;
+    }
+    // string filtering
+    else if(typeof(itemValue)==='string'){
+      return (itemValue.indexOf(value)>-1);
+    }
+    // number filtering
+    else if(typeof(itemValue)==='number'){
+      return (itemValue===value);
+    }
+    // boolean filtering
+    else if(typeof(itemValue)==='boolean'){
+      return (itemValue===value);
+    }
+    // throw error
+    else {
+      throw new Error('The typeof item['+ propertyName +'] is currently not supported for filtering');
+    }
+  },
   filterFunction: function(filterProperty, content){
-    var propertyName = Ember.get(filterProperty, 'propertyName'),
+    var self = this,
+      propertyName = Ember.get(filterProperty, 'propertyName'),
       values = Ember.getWithDefault(filterProperty, 'values', []),
-      and = Ember.getWithDefault(filterProperty, 'and', true);
+      and = Ember.getWithDefault(filterProperty, 'and', true),
+      allOrAny = (and) ? Ember.all : Ember.any;
     // and will be used to determine if an item needs to pass all filter values, or pass just one filter value
 
     return content.filter(function(item){
@@ -65,25 +93,15 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
       var itemValue = Ember.get(item, propertyName),
         passFilter = false;// set to true so items pass if no filter values are active, otherwise set to false so things have to pass filtering
       // filter for values.@each
-      _.forEach(values, function(value){
-        if(!and && passFilter){
-          return passFilter;
-        }
-        // string filtering
-        if(typeof(itemValue)==='string'){
-          passFilter = (itemValue.indexOf(value)>-1);
-        }
-        // number filtering
-        else if(typeof(itemValue)==='number'){
-          passFilter = (itemValue===value);
-        }
-        // boolean filtering
-        else if(typeof(itemValue)==='boolean'){
-          passFilter = (itemValue===value);
-        }
-        // throw error
-        else {
-          throw new Error('The typeof item['+ propertyName +'] is currently not supported for filtering');
+      values.forEach(function(value){
+        if(typeof(itemValue)==='object' && typeof(itemValue.push)==='function'){
+          passFilter = allOrAny(itemValue, function(itemValueItem){
+            self.performTypeOfFilters(value, itemValueItem, passFilter, propertyName,  and);
+          });
+        } else {
+          passFilter = allOrAny(itemValue, function(itemValueItem){
+            self.performTypeOfFilters(value, itemValueItem, passFilter, propertyName,  and);
+          });
         }
       });
       return passFilter;

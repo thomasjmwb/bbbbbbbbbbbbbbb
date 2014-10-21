@@ -10,35 +10,16 @@ export default Ember.ArrayController.extend(filterableMixin, {
       values: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
       possibleValues: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
       valuesDisplay: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
-      entries: [
-        Ember.Object.create({
-          label: 'Creature',
-          name: 'creature',
-          isChecked: true
-        }),
-        Ember.Object.create({
-          label: 'Enchantment',
-          name: 'enchantment',
-          isChecked: true
-        }),
-        Ember.Object.create({
-          label: 'Land',
-          name: 'land',
-          isChecked: true
-        }),
-        Ember.Object.create({
-          label: 'Instant',
-          name: 'instant',
-          isChecked: true
-        }),
-        Ember.Object.create({
-          label: 'Sorcery',
-          name: 'sorcery',
-          isChecked: true
-        })
-      ],
       and: false
     },
+    {
+      label: 'Color',
+      propertyName: 'colors',
+      values: [ 'Black', 'Blue', 'Green', 'Red', 'White'],
+      possibleValues: [ 'Black', 'Blue', 'Green', 'Red', 'White'],
+      valuesDisplay: [ 'Black', 'Blue', 'Green', 'Red', 'White'],
+      and: false
+    }
 //    {
 //      label: 'Format',
 //      propertyName: 'legalities',
