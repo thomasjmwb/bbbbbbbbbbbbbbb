@@ -22,5 +22,7 @@ var app = new EmberApp({
 // along with the exports of each module as its value.
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+app.import('bower_components/jStorage/jStorage.js');
+app.import('bower_components/lz-string/libs/release/lz-string-1.3.3-min.js');
 
 module.exports = app.toTree();
