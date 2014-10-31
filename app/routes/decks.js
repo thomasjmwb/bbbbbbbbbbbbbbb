@@ -7,14 +7,13 @@ export default Ember.Route.extend({
     var cardsController = this.controllerFor('cards');
     return Ember.$.ajax({
       url: 'http://mtgjson.com/json/AllCards-x.jsonp',
-      jsonp: 'mtgjsoncallback',
+      jsonpCallback: 'mtgjsoncallback',
       dataType: 'jsonp',
-      success: function (data, name) {
-
+      success: function (data) {
         var cards = [],
-          cardKeys = Ember.keys(data.cards[0]);
+          cardKeys = Ember.keys(data);
         cardKeys.forEach(function (card) {
-          cards.push(Card.create(data.cards[0][card]));
+          cards.push(Card.create(data[card]));
         });
         cardsController.set('model', cards);
       }
