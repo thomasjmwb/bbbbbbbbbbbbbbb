@@ -1,23 +1,34 @@
 import Ember from 'ember';
 import Card from '../models/card';
 import Deck from '../models/deck';
+import ENV from '../config/environment';
+
+function _createCards (cardKeys, data) {
+  var cards = [];
+  cardKeys.forEach(function (cardKey) {
+    cards.push(Card.create(data[cardKey]));
+  });
+
+  return cards;
+}
 
 export default Ember.Route.extend({
   beforeModel: function () {
     var cardsController = this.controllerFor('cards');
-    return Ember.$.ajax({
-      url: 'http://mtgjson.com/json/AllCards-x.jsonp',
-      jsonpCallback: 'mtgjsoncallback',
-      dataType: 'jsonp',
-      success: function (data) {
-        var cards = [],
-          cardKeys = Ember.keys(data);
-        cardKeys.forEach(function (card) {
-          cards.push(Card.create(data[card]));
-        });
-        cardsController.set('model', cards);
-      }
-    });
+    if (ENV.environment === 'development') {
+      return Ember.$.getJSON('/api/cards').then(function (data) {
+        cardsController.set('model', _createCards(Ember.keys(data.cards[0]), data.cards[0]));
+      });
+    } else {
+      return Ember.$.ajax({
+        url: 'http://mtgjson.com/json/AllCards-x.jsonp',
+        jsonpCallback: 'mtgjsoncallback',
+        dataType: 'jsonp',
+        success: function (data) {
+          cardsController.set('model', _createCards(Ember.keys(data), data));
+        }
+      });
+    }
   },
 
   actions: {
