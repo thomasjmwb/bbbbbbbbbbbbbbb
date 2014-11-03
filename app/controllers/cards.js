@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import filterableMixin from '../mixins/filterable_mixin';
+import filterableMixin from '../mixins/filterable-mixin';
 
 export default Ember.ArrayController.extend(filterableMixin, {
 
