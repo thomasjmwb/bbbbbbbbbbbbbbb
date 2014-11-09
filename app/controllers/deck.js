@@ -28,5 +28,5 @@ export default Ember.ObjectController.extend({
     }
   }.property('controllers.sets.standardSetNames', 'model.cards.[]', 'model.sideboard.[]'),
 
-  isStandard: Ember.computed.bool('classification', 'Standard')
+  isStandard: Ember.computed.equal('classification', 'Standard')
 });
