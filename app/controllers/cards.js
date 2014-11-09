@@ -40,6 +40,22 @@ export default Ember.ArrayController.extend(filterableMixin, {
 //    }
   ],
   displayCards: function () {
-    return this.get('arrangedContent').slice(0, 100);
-  }.property('arrangedContent')
+    return this.get('searchedContent').slice(0, 100);
+  }.property('searchedContent'),
+
+  searchedContent: function () {
+    var searchTerm = this.get('searchTerm'),
+        arrangedContent = this.get('arrangedContent');
+
+    if (!searchTerm) {
+      return arrangedContent;
+    }
+
+    return arrangedContent.filter(function (c) {
+      return c.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }.property('arrangedContent', 'searchTerm'),
+
+  /** @property {String} the current search term */
+  searchTerm: ''
 });

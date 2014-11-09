@@ -57,7 +57,7 @@ export default Ember.Mixin.create(Ember.SortableMixin, {
   performTypeOfFilters: function (value, itemValue, propertyName){
     if(typeof(itemValue)==='undefined'){
       console.log('The typeof item['+propertyName+'] is undefined');
-      return false;
+      return true;
     }
     // string filtering
     else if(typeof(itemValue)==='string'){
