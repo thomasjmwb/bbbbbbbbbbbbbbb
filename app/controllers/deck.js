@@ -26,5 +26,7 @@ export default Ember.ObjectController.extend({
     } else {
       return 'Non-Standard';
     }
-  }.property('controllers.sets.standardSetNames', 'model.cards.[]', 'model.sideboard.[]')
+  }.property('controllers.sets.standardSetNames', 'model.cards.[]', 'model.sideboard.[]'),
+
+  isStandard: Ember.computed.bool('classification', 'Standard')
 });
