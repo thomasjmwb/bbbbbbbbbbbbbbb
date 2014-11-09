@@ -40,9 +40,20 @@ export default Ember.Route.extend({
 
   afterModel: function () {
     var setsController = this.controllerFor('sets');
-    return Ember.$.getJSON('/api/sets').then(function (data) {
-      setsController.set('model', _createSets(data.sets));
-    });
+    if (ENV.environment === 'development') {
+      return Ember.$.getJSON('/api/sets').then(function (data) {
+        setsController.set('model', _createSets(data.sets));
+      });  
+    } else {
+      return Ember.$.ajax({
+        url: 'http://mtgjson.com/json/SetList.jsonp',
+        jsonpCallback: 'mtgjsoncallback',
+        dataType: 'jsonp',
+        success: function (data) {
+          setsController.set('model', _createSets(data));
+        }
+      });
+    }
   },
 
   actions: {
