@@ -1,22 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
-  cards: function () {
+
+  standardSets: function () {
     var sets = this.get('model'),
-        cards = [];
-
-    sets.forEach(function (set) {
-      set.cards.forEach(function (card) {
-        cards.push({
-          name: card.name,
-          mana: card.manaCost,
-          set: set.name,
-          type: card.type,
-          pt: card.power + '/' + card.toughness
-        });
-      });
+        standardSetNames = this.get('standardSetNames');
+    return sets.filter(function (s) {
+      return standardSetNames.contains(s.name);
     });
+  }.property('model', 'standardSetNames'),
 
-    return cards;
-  }.property('model')
+  standardSetNames: function () {
+    return ['Return to Ravnica', 'Gatecrash', 'Dragon\'s Maze', 'Magic 2014 Core Set', 'Theros', 'Born of the Gods', 'Journey into Nyx', 'Magic 2015 Core Set'];
+  }.property('standardSets')
 });

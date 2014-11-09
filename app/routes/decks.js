@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Card from '../models/card';
 import Deck from '../models/deck';
+import Set from '../models/set';
 import ENV from '../config/environment';
 
 function _createCards (cardKeys, data) {
@@ -10,6 +11,12 @@ function _createCards (cardKeys, data) {
   });
 
   return cards;
+}
+
+function _createSets (sets) {
+  return sets.map(function (s) {
+    return Set.create(s);
+  });
 }
 
 export default Ember.Route.extend({
@@ -29,6 +36,13 @@ export default Ember.Route.extend({
         }
       });
     }
+  },
+
+  afterModel: function () {
+    var setsController = this.controllerFor('sets');
+    return Ember.$.getJSON('/api/sets').then(function (data) {
+      setsController.set('model', _createSets(data.sets));
+    });
   },
 
   actions: {
