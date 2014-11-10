@@ -5,12 +5,9 @@ import Set from '../models/set';
 import ENV from '../config/environment';
 
 function _createCards (cardKeys, data) {
-  var cards = [];
-  cardKeys.forEach(function (cardKey) {
-    cards.push(Card.create(data[cardKey]));
+  return cardKeys.map(function (cardKey) {
+    return Card.create(data[cardKey]);
   });
-
-  return cards;
 }
 
 function _createSets (sets) {
@@ -36,6 +33,10 @@ export default Ember.Route.extend({
         }
       });
     }
+  },
+
+  model: function () {
+    return [];
   },
 
   afterModel: function () {
