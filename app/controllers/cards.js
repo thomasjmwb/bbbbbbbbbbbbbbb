@@ -7,9 +7,9 @@ export default Ember.ArrayController.extend(filterableMixin, {
     {
       label: 'Card Types',
       propertyName: 'mainType',
-      values: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
-      possibleValues: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
-      valuesDisplay: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery'],
+      values: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery', 'Artifact'],
+      possibleValues: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery', 'Artifact'],
+      valuesDisplay: ['Creature', 'Enchantment', 'Land', 'Instant', 'Sorcery', 'Artifact'],
       and: false
     },
     {
