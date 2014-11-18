@@ -15,7 +15,7 @@ test('it exists', function() {
   ok(controller);
 });
 
-test('it can succcessfully classify a deck as standard', function () {
+test.skip('it can succcessfully classify a deck as standard', function () {
   var controller = this.subject();
   controller.set('model', Deck.create({
     cards: [{printings: ['Magic 2015 Core Set']}, {printings: ['Dragon\'s Maze', 'fake set']}, {printings: ['Return to Ravnica']}, 
