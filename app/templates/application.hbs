@@ -6,7 +6,13 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Hi {{controllers.user.name}}{{fa-icon "caret-down"}}</span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Contact {{fa-icon "caret-down"}}</a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/thomasjmwb/bbbbbbbbbbbbbbb">{{fa-icon "github"}} Github</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Hi {{controllers.user.name}}{{fa-icon "caret-down"}}</a>
           <ul class="dropdown-menu">
             <li>{{#link-to 'user' controllers.user.id}}Profile{{/link-to}}</li>
             <li>{{#link-to 'decks.list' controllers.user.id}}Decks{{/link-to}}</li>
