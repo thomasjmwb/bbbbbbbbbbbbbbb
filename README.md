@@ -2,7 +2,7 @@
 
 This README outlines the details of collaborating on this Ember application.
 
-A short introduction of this app could easily go here.
+Webatrice is a web application aspiring to be part of the desktop application called Cockatrice. To read more about Cockatrice, go to https://github.com/Cockatrice/Cockatrice.
 
 ## Prerequisites
 
@@ -33,6 +33,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 * `ember test --server`
 
 ### Building
+
+[![Build Status](https://travis-ci.org/thomasjmwb/bbbbbbbbbbbbbbb.svg?branch=master)](https://travis-ci.org/thomasjmwb/bbbbbbbbbbbbbbb)
 
 * `ember build` (development)
 * `ember build --environment production` (production)
