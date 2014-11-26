@@ -40,15 +40,19 @@ import Ember from 'ember';
 
 
 */
+
+var Em = Ember;
 export default Ember.Object.extend({
   legal: function(){
-    var legalities = this.get('legalities');
-    var ret = 'isStandard';
-    if(legalities.Modern==='Legal'){
+    var legalities = this.getWithDefault('legalities', {});
+    var ret = '';
+    if(Em.getWithDefault(legalities, 'Standard', '')==='Legal'){
+      ret = 'isStandard';
+    } else if(Em.getWithDefault(legalities, 'Modern', '')==='Legal'){
       ret = 'isModern';
-    } else if(legalities.Legacy==='Legal'){
+    } else if(Em.getWithDefault(legalities, 'Legacy', '')==='Legal'){
       ret = 'isLegacy';
-    } else if(legalities.Vintage==='Legal'){
+    } else if(Em.getWithDefault(legalities, 'Vintage', '')==='Legal'){
       ret = 'isVintage';
     }
     return ret;
