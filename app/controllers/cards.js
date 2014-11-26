@@ -19,15 +19,15 @@ export default Ember.ArrayController.extend(filterableMixin, {
       possibleValues: [ 'Black', 'Blue', 'Green', 'Red', 'White'],
       valuesDisplay: [ 'Black', 'Blue', 'Green', 'Red', 'White'],
       and: false
+    },
+    {
+      label: 'Legalities',
+      propertyName: 'legal',
+      values: [ 'isStandard', 'isModern', 'isLegacy', 'isVintage'],
+      possibleValues: [ 'isStandard', 'isModern', 'isLegacy', 'isVintage'],
+      valuesDisplay: [ 'Standard', 'Modern', 'Legacy', 'Vintage'],
+      and: false
     }
-    // {
-    //   label: 'Legalities',
-    //   propertyName: 'legal',
-    //   values: [ 'isStandard', 'isModern', 'isLegacy', 'isVintage'],
-    //   possibleValues: [ 'isStandard', 'isModern', 'isLegacy', 'isVintage'],
-    //   valuesDisplay: [ 'Standard', 'Modern', 'Legacy', 'Vintage'],
-    //   and: false
-    // }
 //    {
 //      label: 'Format',
 //      propertyName: 'legalities',
