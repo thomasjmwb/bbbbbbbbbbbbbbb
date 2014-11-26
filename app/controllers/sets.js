@@ -12,6 +12,6 @@ export default Ember.ArrayController.extend({
 
   /** @property {Array[String]} is the allowed set names currently for standard */
   standardSetNames: function () {
-    return ['Return to Ravnica', 'Gatecrash', 'Dragon\'s Maze', 'Magic 2014 Core Set', 'Theros', 'Born of the Gods', 'Journey into Nyx', 'Magic 2015 Core Set'];
+    return ['Theros', 'Born of the Gods', 'Journey into Nyx', 'Magic 2015 Core Set', 'Khans of Takir'];
   }.property('standardSets')
 });
