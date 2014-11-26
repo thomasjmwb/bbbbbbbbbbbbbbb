@@ -12,11 +12,6 @@ var App = Ember.Application.extend({
   Resolver: Resolver
 });
 
-window.Em.c = function(controllerName){
-	var controller = "controller:"+controllerName;
-	return App.__container__.lookup(controller);
-};
-
 loadInitializers(App, config.modulePrefix);
 
 export default App;
