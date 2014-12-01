@@ -40,6 +40,59 @@ var Deck = Ember.Object.extend({
   /** @property {Array[Card]} - an array of Cards that make up the sideboard */
   sideboard: [],
 
+  /** @property {Boolean} - true if the entire deck + sideboard is standard */
+  isStandard: function () {
+    var cards = this.get('cards'),
+        sideboard = this.get('sideboard');
+
+    function isStandard (card) {
+      return card.get('isStandard');
+    }
+
+    return cards.every(isStandard) && sideboard.every(isStandard);
+  }.property('cards.[]', 'sideboard.[]'),
+
+
+  /** @property {Boolean} - true if the entire deck + sideboard is modern */
+  isModern: function () {
+    var cards = this.get('cards'),
+        sideboard = this.get('sideboard');
+
+    function isModern (card) {
+      return card.get('isStandard') || card.get('isModern');
+    }
+
+    return cards.every(isModern) && sideboard.every(isModern);
+  }.property('cards.[]', 'sideboard.[]'),
+
+  /** @property {Boolean} - true if the entire deck + sideboard is legacy */
+  isLegacy: function () {
+    var cards = this.get('cards'),
+        sideboard = this.get('sideboard');
+
+    function isLegacy (card) {
+      return card.get('isStandard') || card.get('isModern') || card.get('isLegacy');
+    }
+
+    return cards.every(isLegacy) && sideboard.every(isLegacy);
+  }.property('cards.[]', 'sideboard.[]'),
+
+  /** @property {Boolean} - not sure about this. can a deck not ever be at least vintage? */
+  isVintage: true,
+
+  /** @property {String} -  */
+  classification: function () {
+    var isStandard = this.get('isStandard'),
+        isModern = this.get('isModern'),
+        isLegacy = this.get('isLegacy');
+
+    if (!this.get('cards.length') && !this.get('sideboard.length')) {
+      return '';
+    }
+
+    return isStandard ? 'Standard' : isModern ? 'Modern' : isLegacy ? 'Legacy' : 'Vintage';
+  }.property('isStandard', 'isModern', 'isLegacy', 'isVintage'),
+
   /** @property {Array[String]} - an array of all the different main card types in the deck */
   cardTypes: function () {
     return this.get('cards').mapBy('mainType').uniq();
@@ -80,6 +133,7 @@ var Deck = Ember.Object.extend({
     return cardGroups;
   }.property('sideboard.@each'),
 
+  /** @property {String} - a string representation of the deck that Cockatrice knows how to parse and import */
   exportFormat: function () {
     var mainDeckGroupings = this.get('mainDeckGroupings'),
         sideDeckGroupings = this.get('sideDeckGroupings'),
@@ -88,7 +142,7 @@ var Deck = Ember.Object.extend({
     mainDeckGroupings.forEach(function (group) {
       group.cardObjs.forEach(function (cardObj) {
         exp += cardObj.count + ' ' + cardObj.card.get('name') + '\n';
-      });      
+      });
     });
 
     sideDeckGroupings.forEach(function (group) {
@@ -100,6 +154,7 @@ var Deck = Ember.Object.extend({
     return exp;
   }.property('mainDeckGroupings.@each', 'sideDeckGroupings.@each'),
 
+  /** @property {Number} - the total number of unique cards in the deck and sideboard */
   numberOfUniqueCardsInDeck: function () {
     return this.get('cards').uniq().length + this.get('sideboard').uniq().length;
   }.property('cards.@each', 'sideboard.@each')
