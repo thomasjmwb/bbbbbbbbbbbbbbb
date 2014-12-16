@@ -1,9 +1,26 @@
-before_install:
- - npm install -g bower
- - bower install
 language: node_js
+
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+ - "npm config set spin false"
+ - "npm install -g npm@^2"
+
+install:
+ - npm install -g bower
+ - npm install
+ - bower install
+
+script:
+  - npm test
+
 node_js:
- - "0.10"
+  - "0.10"
+
 deploy:
   provider: heroku
   api_key:

@@ -104,7 +104,7 @@
                       <span class="indent indent-1">{{group.numberOf}}</span>
                       <i {{bind-attr class=":fa group.canShow:fa-caret-down:fa-caret-up :indent :indent-1"}}></i>
                     </td>
-                    <td><strong>{{pluralize group.type}}</strong></td>
+                    <td><strong>{{pluralize-string group.type}}</strong></td>
                   {{/x-tr}}
                   {{#if group.canShow}}
                     {{#each cardObj in group.cardObjs}}
@@ -139,7 +139,7 @@
                         <span class="indent indent-1">{{group.numberOf}}</span>
                         <i {{bind-attr class=":fa group.canShow:fa-caret-down:fa-caret-up :indent :indent-1"}}></i>
                       </td>
-                      <td><strong>{{pluralize group.type}}</strong></td>
+                      <td><strong>{{pluralize-string group.type}}</strong></td>
                     {{/x-tr}}
                     {{#if group.canShow}}
                       {{#each cardObj in group.cardObjs}}
