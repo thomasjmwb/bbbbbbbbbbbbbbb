@@ -13,7 +13,6 @@
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0",
-    "ember-addons.bs_for_ember": "~0.7.0",
     "ember-inflector": "1.3.1"
   }
 }

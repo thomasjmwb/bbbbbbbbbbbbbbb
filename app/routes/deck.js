@@ -7,10 +7,6 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    exportDeck: function () {
-      return Bootstrap.ModalManager.show('deckExport');
-    },
-
     addToMain: function (card) {
       this.get('controller.model.cards').pushObject(card);
     },

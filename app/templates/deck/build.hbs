@@ -58,7 +58,7 @@
                 {{fa-icon "caret-down"}}
               </button>
               <ul class="dropdown-menu">
-                <li><a {{action "exportDeck"}}>Export Deck</a></li>
+                <li><a {{action "openModal" "deck/export-modal" model}}>Export Deck</a></li>
               </ul>
             </div>
             <span>Deck Classification: <span>{{controllers.deck.classification}}</span></span>
