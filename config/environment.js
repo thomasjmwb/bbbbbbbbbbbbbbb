@@ -25,6 +25,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.contentSecurityPolicy = {
+      'img-src': "'self' http://cdn.smosh.com",
+      'style-src': "'self' 'unsafe-inline'"
+    };
   }
 
   if (environment === 'test') {
