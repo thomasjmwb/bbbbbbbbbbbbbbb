@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import Card from '../models/card';
-import Deck from '../models/deck';
 import Set from '../models/set';
 import ENV from '../config/environment';
 

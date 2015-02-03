@@ -6,7 +6,7 @@ export default Ember.ObjectController.extend({
     close: function() {
       return this.send('closeModal');
     },
-    
+
     importDeck: function () {
       var cards = this.controllerFor('cards').get('model'),
         deck = Deck.createDeck(this.get('importContents'), cards);
