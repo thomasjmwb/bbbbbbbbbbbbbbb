@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     openModal: function (modalName, model) {
       return this.render(modalName, {
         controller: modalName,
-        model: model,
+        model: model ? model : Ember.Object.create({}),
         into: 'application',
         outlet: 'modal'
       });

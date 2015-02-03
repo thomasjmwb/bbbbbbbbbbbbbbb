@@ -3,7 +3,7 @@ import Deck from '../models/deck';
 
 export default Ember.Route.extend({
   model: function () {
-    return Deck.create();
+    return Deck.create({});
   },
 
   actions: {

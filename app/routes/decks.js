@@ -44,7 +44,7 @@ export default Ember.Route.extend({
     if (ENV.environment === 'development') {
       return Ember.$.getJSON('/api/sets').then(function (data) {
         setsController.set('model', _createSets(data.sets));
-      });  
+      });
     } else {
       return Ember.$.ajax({
         url: 'http://mtgjson.com/json/SetList.jsonp',
@@ -65,18 +65,6 @@ export default Ember.Route.extend({
         model: card,
         controller: 'card'
       });
-    },
-
-    importDeck: function () {
-      var cards = this.controllerFor('cards').get('model'),
-          deck = Deck.createDeck(this.get('controller.importContents'), cards);
-
-      Bootstrap.ModalManager.hide('deckImport');
-      this.transitionTo('deck.build', deck);
-    },
-
-    showImportDeckModal: function () {
-      return Bootstrap.ModalManager.show('deckImport');
     }
   }
 });
