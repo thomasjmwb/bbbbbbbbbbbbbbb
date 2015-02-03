@@ -1,5 +1,4 @@
-<div class="overlay modal" style="display: block;" {{action "close"}}>
-  <div class="modal-dialog" style="background-color: white;">
-    {{yield}}
-  </div>
+<div class="overlay modal" style="display: block;" {{action "close"}}></div>
+<div class="modal-dialog" style="background-color: white; z-index: 1002; position: absolute; top: 0px; left: 25%;">
+  {{yield}}
 </div>

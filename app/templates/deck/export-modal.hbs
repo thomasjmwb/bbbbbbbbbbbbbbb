@@ -1,13 +1,19 @@
-{{#x-modal action="closeModal"}}
+{{#x-modal action="close"}}
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" {{action "closeModal"}} aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Deck</h4>
   </div>
   <div class="modal-body">
-    <p>One fine body&hellip;</p>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-3">Contents</label>
+        <div class="col-sm-9">
+          {{textarea value=exportFormat rows=numberOfUniqueCardsInDeck}}
+        </div>
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" {{action "closeModal"}}>Close</button>
-    <button type="button" class="btn btn-primary">Save changes</button>
+    <button class="btn btn-default" {{action "closeModal"}}>Close</button>
   </div>
 {{/x-modal}}

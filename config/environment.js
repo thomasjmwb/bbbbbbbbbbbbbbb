@@ -26,7 +26,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy = {
-      'img-src': "'self' http://cdn.smosh.com",
+      'img-src': "'self' http://cdn.smosh.com http://mtgimage.com",
       'style-src': "'self' 'unsafe-inline'"
     };
   }
