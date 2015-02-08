@@ -1,1 +1,5 @@
-{{x-card card=model}}
+{{#if model}}
+  {{x-card card=model}}
+{{else}}
+  <p>No card found.</p>
+{{/if}}
