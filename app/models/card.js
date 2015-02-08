@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'webatrice/config/environment';
 
 /* for ref: single card format
 
@@ -72,6 +73,9 @@ export default Ember.Object.extend({
   }.property('printings'),
 
   imageUrl: function () {
+    if (ENV.environment === 'development') {
+      return '/img/jace.jpg';
+    }
     return 'http://mtgimage.com/card/' + this.get('name') + '.jpg';
   }.property('name'),
 
