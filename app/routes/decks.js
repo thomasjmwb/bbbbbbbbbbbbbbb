@@ -33,12 +33,7 @@ export default Ember.Route.extend({
 
   actions: {
     showCard: function (card) {
-      this.render('card', {
-        into: 'deck.build',
-        outlet: 'card',
-        model: card,
-        controller: 'card'
-      });
+      this.controllerFor('deck.build').set('selectedCard', card);
     }
   }
 });

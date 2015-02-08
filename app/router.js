@@ -16,7 +16,7 @@ Router.map(function() {
   });
 
   this.resource('cards', function () {
-    this.resource('card', {path: '/:card_id'});
+    this.resource('card', {path: '/:cardName'});
   });
 });
 

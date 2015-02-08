@@ -18,7 +18,18 @@
       {{/full-height}}
     </div>
     <div class="col-sm-2">
-      {{outlet "card"}}
+      {{#if selectedCard}}
+        {{x-card card=selectedCard}}
+        {{x-card-deck card=selectedCard
+          deck=model
+          addToMain="addToMain"
+          addToSide="addToSide"
+          removeOneFromMain="removeOneFromMain"
+          removeAllFromMain="removeAllFromMain"
+          removeOneFromSide="removeOneFromSide"
+          removeAllFromSide="removeAllFromSide"
+        }}
+      {{/if}}
     </div>
     <div class="col-sm-5">
       <form class="form-horizontal">

@@ -1,0 +1,40 @@
+<img {{bind-attr src=card.imageUrl}} class="img-responsive">
+<div class="row">
+  <div class="col-sm-6">
+    <span>Name</span>
+  </div>
+  <div class="col-sm-6">
+    <span>{{card.name}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <span>Mana cost</span>
+  </div>
+  <div class="col-sm-6">
+    <span>{{card.manaCostFormatted}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <span>Card type</span>
+  </div>
+  <div class="col-sm-6">
+    <span>{{card.type}}</span>
+  </div>
+</div>
+{{#if card.powerToughnessFormatted}}
+  <div class="row">
+    <div class="col-sm-6">
+      <span>P/T</span>
+    </div>
+    <div class="col-sm-6">
+      <span>{{card.powerToughnessFormatted}}</span>
+    </div>
+  </div>
+{{/if}}
+<div class="row">
+  <div class="col-sm-12">
+    <p>{{card.text}}</p>
+  </div>
+</div>
