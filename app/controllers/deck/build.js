@@ -7,6 +7,10 @@ export default Ember.ObjectController.extend({
 
   doNotShowTypes: [],
 
+  displayCards: Ember.computed.alias('controllers.cards.displayCards'),
+
+  searchTerm: Ember.computed.alias('controllers.cards.searchTerm'),
+
   canShowMainDeck: function () {
     return !this.get('doNotShowTypes').contains('mainDeck');
   }.property('doNotShowTypes.@each'),

@@ -2,7 +2,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Search</label>
     <div class="col-sm-10">
-      {{input type="text" value=controllers.cards.searchTerm class="form-control"}}
+      {{input type="text" value=searchTerm class="form-control"}}
     </div>
   </div>
 </form>
@@ -17,7 +17,7 @@
   </tr>
   </thead>
   <tbody>
-  {{#each card in controllers.cards.displayCards}}
+  {{#each card in displayCards}}
     <tr class="cursor-pointer" {{action "showCard" card}}>
       <td class="col-sm-3" {{bind-attr title=card.name}}>{{card.name}}</td>
       <td class="col-sm-3" {{bind-attr title=card.recentSet}}>{{card.recentSet}}</td>

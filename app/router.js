@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import config from './config/environment';
+import config from 'webatrice/config/environment';
 
 var Router = Ember.Router.extend({
   location: config.locationType
@@ -7,16 +7,17 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-  this.resource('users', function () {
-    this.resource('user', {path: '/:user_id'}, function () {
-      this.resource('decks', function () {
-        this.route('list');
-        this.resource('deck', {path: '/:deck_id'}, function () {
-          this.route('build');
-        });
-      });
+  this.resource('user', {path: '/u/:user_id'});
+  this.resource('decks', function () {
+    this.route('list');
+    this.resource('deck', {path: '/:deck_id'}, function () {
+      this.route('build');
     });
-  });  
+  });
+
+  this.resource('cards', function () {
+    this.resource('card', {path: '/:card_id'});
+  });
 });
 
 export default Router;
